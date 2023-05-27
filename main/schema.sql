@@ -27,11 +27,3 @@ CREATE TABLE comments (
   post_id INT REFERENCES posts(pid),
   date_created TIMESTAMP
 );
-
-CREATE TABLE likes (
-  cid SERIAL PRIMARY KEY,
-  author VARCHAR REFERENCES users(username),
-  user_id INT REFERENCES users(uid),
-  post_id INT REFERENCES posts(pid),
-  date_created TIMESTAMP
-);
