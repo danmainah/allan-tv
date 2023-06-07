@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 
-var app = require('../main/app');
-var debug = require('debug')('allan-tv:server');
+var app = require('../app');
+var debug = require('debug')('blog-backend:server');
 var http = require('http');
 
 /**
