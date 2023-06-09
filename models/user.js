@@ -13,7 +13,7 @@ const UserSchema = new Schema({
     required: true
   },
   posts: [{ type: mongoose.Types.ObjectId, ref: 'Post' }],
-  
+
 });
 // secure password by hashing it
 UserSchema.pre(
@@ -35,6 +35,6 @@ UserSchema.pre(
   }
   
 
-const UserModel = mongoose.model('user', UserSchema);
+const UserModel = mongoose.model('User', UserSchema);
 
 module.exports = UserModel;

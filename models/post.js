@@ -21,10 +21,10 @@ const postSchema = new mongoose.Schema({
   timestamps: true,
 },
 );
-blogSchema.virtual('url').get(function(){
-  return '/blog/' + this._id
+postSchema.virtual('url').get(function(){
+  return '/post/' + this._id
 })
 
-const Blog = mongoose.model('Blog', blogSchema);
+const Post = mongoose.model('Post', postSchema);
 
-module.exports = Blog;
+module.exports = Post;
