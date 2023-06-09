@@ -11,7 +11,9 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  posts: [{ type: mongoose.Types.ObjectId, ref: 'Post' }],
+  
 });
 // secure password by hashing it
 UserSchema.pre(
