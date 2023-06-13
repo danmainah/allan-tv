@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 const User = require('../models/user');
+const ObjectID = require('mongodb').ObjectId;
 
 exports.getPosts = async (req, res) => {
   const posts = await Post.find();
@@ -7,18 +8,26 @@ exports.getPosts = async (req, res) => {
 };
 
 exports.createPost = async (req , res) => {
+  console.log(req.user)
   const post = new Post({
     title: req.body.title,
     content: req.body.content,
-    author: req.session.name, 
+    author: req.user._id, 
     reading_time: req.body.reading_time
   });
+ 
   await post.save();
-  const email = req.session.email
-  const userPosts = await User.findOne( { email } ); 
-  // push the blogs created  into the user.blogs array 
-  userPosts.posts.push(post); 
-  res.json(blog);
+  const user = await  User.findByIdAndUpdate({'_id': new ObjectID(req.user._id)} , {
+    $push: {
+        posts: {
+            post
+          }
+          }
+      }); 
+  // push the posts created  into the user.posts array 
+  user.posts.push(post); 
+  res.json(post);
+  console.log(user)
 };
 
 exports.getPost = async (req, res) => {

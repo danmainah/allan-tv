@@ -20,6 +20,7 @@ const postSchema = new mongoose.Schema({
 {
   timestamps: true,
 },
+{ _id: false },
 );
 postSchema.virtual('url').get(function(){
   return '/post/' + this._id
