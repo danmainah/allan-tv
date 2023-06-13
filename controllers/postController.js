@@ -7,33 +7,33 @@ exports.getPosts = async (req, res) => {
 };
 
 exports.createPost = async (req , res) => {
-  const blog = new Blog({
+  const post = new Post({
     title: req.body.title,
     content: req.body.content,
     author: req.session.name, 
     reading_time: req.body.reading_time
   });
-  await blog.save();
+  await post.save();
   const email = req.session.email
-  const userBlogs = await User.findOne( { email } ); 
+  const userPosts = await User.findOne( { email } ); 
   // push the blogs created  into the user.blogs array 
-  userBlogs.blogs.push(blog); 
+  userPosts.posts.push(post); 
   res.json(blog);
 };
 
-exports.getBlog = async (req, res) => {
-  const blog = await Blog.findById(req.params.id);
-  res.json(blog);
+exports.getPost = async (req, res) => {
+  const post = await Post.findById(req.params.id);
+  res.json(post);
 };
 
-exports.updateBlog = async (req, res) => {
-  const blog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
+exports.updatePost = async (req, res) => {
+  const post = await Post.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
-  res.json(blog);
+  res.json(post);
 };
 
-exports.deleteBlog = async (req, res) => {
-  await Blog.findByIdAndDelete(req.params.id);
-  res.json({ message: 'Blog deleted' });
+exports.deletePost = async (req, res) => {
+  await Post.findByIdAndDelete(req.params.id);
+  res.json({ message: 'Post deleted' });
 };
