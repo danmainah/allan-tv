@@ -10,7 +10,7 @@ const postSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    author: { type: mongoose.Types.ObjectId, ref: 'User' },
+    author: { type: mongoose.Types.ObjectId, ref: 'users', required: true },
     comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
     reading_time: {
       type: String,
@@ -19,8 +19,7 @@ const postSchema = new mongoose.Schema({
 },
 {
   timestamps: true,
-},
-{ _id: false },
+}
 );
 postSchema.virtual('url').get(function(){
   return '/post/' + this._id
