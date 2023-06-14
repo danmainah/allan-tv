@@ -10,8 +10,8 @@ const postSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    author: { type: mongoose.Types.ObjectId, ref: 'users', required: true },
-    comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
+    author: { type: mongoose.Types.ObjectId, ref: 'User', required: true },
+    comments: [{ type: mongoose.Types.ObjectId, ref: 'Comments' }],
     reading_time: {
       type: String,
       select: true,

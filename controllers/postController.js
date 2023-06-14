@@ -10,7 +10,6 @@ exports.getPosts = async (req, res) => {
 
 exports.createPost = async (req , res) => {
   const id  = {"_id": new Objectid(req.user._id.trim())}
-  console.log(id)
   const post = new Post({
     title: req.body.title,
     content: req.body.content,
@@ -19,13 +18,12 @@ exports.createPost = async (req , res) => {
   });
  
   await post.save();
-  console.log(post)
-
+  //add post yo user posts array
   await User.findOneAndUpdate(
     { _id: id },
     { $push: { posts: post } },
   )
-  
+
   res.json(post);
 };
 
