@@ -1,11 +1,7 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const db = require('./connectdb');
-const UserModel = require('./models/user');
-
-
 
 require('./auth/auth');
 
