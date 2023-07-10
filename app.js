@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const db = require('./connectdb');
+const cors = require('cors')
 
 require('./auth/auth');
 
@@ -13,6 +14,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
+app.use(cors())
 
 app.use('/', routes);
 // Plug in the JWT strategy as a middleware so only verified users can access this route.
